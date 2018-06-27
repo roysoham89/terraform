@@ -1,5 +1,9 @@
-#cloud-boothook
 #!/bin/bash
-sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.orig
-sudo sed -i 's/Port 22/Port 443/g'  /etc/ssh/sshd_config
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.orig
+echo -e "\nPort 443" >> /etc/ssh/sshd_config
 sudo service sshd restart
+sudo curl -sSO https://dl.google.com/cloudagents/install-monitoring-agent.sh
+sudo bash install-monitoring-agent.sh
+sudo curl -sSO https://dl.google.com/cloudagents/install-logging-agent.sh
+sudo bash install-logging-agent.sh
+
